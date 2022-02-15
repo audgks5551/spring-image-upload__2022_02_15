@@ -1,25 +1,23 @@
-package image.upload.storage;
+package image.upload.storage.controller;
 
-import lombok.RequiredArgsConstructor;
+import image.upload.storage.payload.UploadFileResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
 import java.util.logging.Logger;
 
 
-@RestController
+//@RestController
 public class FileUploadController {
 
     private final Logger logger = Logger.getLogger(FileUploadController.class.getName());
 
     // `MultipartFile`가 없으면 null 반환
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadData(@RequestParam("file")MultipartFile file) throws Exception {
+    public ResponseEntity<String> uploadData(@RequestParam("file") MultipartFile file) throws Exception {
 
         // file 파라미터가 null인 경우 예외 처리
         if (file == null) {
@@ -50,3 +48,5 @@ public class FileUploadController {
         return new ResponseEntity<String>(originalName, HttpStatus.OK);
     }
 }
+
+
